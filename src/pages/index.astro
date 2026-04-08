@@ -110,6 +110,8 @@ const socials = [
   { label: "GitHub", value: "github.com/hitesh-bansal-sample", href: "https://github.com/hitesh-bansal-sample" },
   { label: "X", value: "x.com/hitesh_bansal_sample", href: "https://x.com/hitesh_bansal_sample" },
   { label: "LeetCode", value: "leetcode.com/hitesh-bansal-sample", href: "https://leetcode.com/hitesh-bansal-sample" },
+  { label: "Codeforces", value: "codeforces.com/profile/hitesh_bansal_sample", href: "https://codeforces.com/profile/hitesh_bansal_sample" },
+  { label: "CodeChef", value: "codechef.com/users/hitesh_bansal_sample", href: "https://www.codechef.com/users/hitesh_bansal_sample" },
 ];
 ---
 
@@ -296,6 +298,7 @@ const socials = [
     <script is:inline>
       const root = document.documentElement;
       const themeToggle = document.getElementById("theme-toggle");
+      const header = document.querySelector(".site-header");
       const yearNode = document.getElementById("year");
 
       const applyTheme = (theme) => {
@@ -337,6 +340,62 @@ const socials = [
       revealElements.forEach((item, index) => {
         item.style.setProperty("--delay", `${Math.min(index * 70, 560)}ms`);
         observer.observe(item);
+      });
+
+      const mobileQuery = window.matchMedia("(max-width: 900px)");
+      let lastY = window.scrollY;
+      let ticking = false;
+
+      const updateHeaderVisibility = () => {
+        if (!header || !mobileQuery.matches) {
+          ticking = false;
+          return;
+        }
+
+        const currentY = window.scrollY;
+        const delta = currentY - lastY;
+
+        if (currentY <= 20) {
+          header.classList.remove("nav-hidden");
+          lastY = currentY;
+          ticking = false;
+          return;
+        }
+
+        if (Math.abs(delta) < 6) {
+          ticking = false;
+          return;
+        }
+
+        if (delta > 0 && currentY > 64) {
+          header.classList.add("nav-hidden");
+        } else {
+          header.classList.remove("nav-hidden");
+        }
+
+        lastY = currentY;
+        ticking = false;
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          ticking = true;
+          window.requestAnimationFrame(updateHeaderVisibility);
+        }
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      mobileQuery.addEventListener("change", () => {
+        if (!header) {
+          return;
+        }
+        lastY = window.scrollY;
+        header.classList.remove("nav-hidden");
+      });
+
+      header?.addEventListener("focusin", () => {
+        header.classList.remove("nav-hidden");
       });
     </script>
   </body>
