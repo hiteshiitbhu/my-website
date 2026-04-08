@@ -9,7 +9,7 @@
 ## Must-Haves
 - Bold/dynamic visual design, matching client spec
 - Responsive, accessible, SEO optimized
-- Contact form (email delivery, spam-free)
+- Contact section with direct reach options (email + social links)
 - Project showcase with interactive/animated UI
 - Dark/light mode toggle
 - Documentation and dev notes in `/docs`

@@ -14,7 +14,7 @@ This document describes the layout and purpose of each directory and file in the
 - **Home:** Hero, tagline, availability, social/contact links
 - **About:** Bio, professional summary, story
 - **Projects:** Portfolio/gallery of work, details modal
-- **Contact:** Form (email), alternate ways to connect
+- **Contact:** Email + social links, alternate ways to connect
 - **Blog (Future optional):** Markdown/MDX-backed blogging structure
 
 ## Components
@@ -23,4 +23,5 @@ This document describes the layout and purpose of each directory and file in the
 - Animated heading/hero
 - Project cards
 - Contact form
+- Contact links block
 - Dark mode/theme toggle
