@@ -140,14 +140,6 @@ const socials = [
   </head>
   <body>
     <a class="skip-link" href="#home">Skip to content</a>
-    <div class="atmosphere" aria-hidden="true">
-      <span class="orb orb-a"></span>
-      <span class="orb orb-b"></span>
-      <span class="orb orb-c"></span>
-      <span class="scanline"></span>
-      <span class="grain"></span>
-      <span class="signal-path"></span>
-    </div>
 
     <header class="site-header reveal">
       <p class="logo">HB//SIGNAL</p>
@@ -160,8 +152,8 @@ const socials = [
           }
         </ul>
       </nav>
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme">
-        <span aria-hidden="true">Theme</span>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode">
+        Dark
       </button>
     </header>
 
@@ -187,19 +179,6 @@ const socials = [
             ))
           }
         </ul>
-
-        <div class="meter-wrap" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
       </section>
 
       <section id="about" class="section reveal">
@@ -318,18 +297,18 @@ const socials = [
       const root = document.documentElement;
       const themeToggle = document.getElementById("theme-toggle");
       const yearNode = document.getElementById("year");
-      const storedTheme = localStorage.getItem("hb-theme");
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const initialTheme = storedTheme ?? (prefersDark ? "dark" : "light");
 
       const applyTheme = (theme) => {
         root.dataset.theme = theme;
         if (themeToggle) {
-          themeToggle.textContent = theme === "dark" ? "Light" : "Dark";
-          themeToggle.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "dark"} mode`);
+          const nextTheme = theme === "dark" ? "light" : "dark";
+          themeToggle.textContent = nextTheme === "dark" ? "Dark" : "Light";
+          themeToggle.setAttribute("aria-label", `Switch to ${nextTheme} mode`);
         }
       };
 
+      const storedTheme = localStorage.getItem("hb-theme");
+      const initialTheme = storedTheme === "dark" ? "dark" : "light";
       applyTheme(initialTheme);
 
       themeToggle?.addEventListener("click", () => {
